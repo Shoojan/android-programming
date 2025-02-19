@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Smile Book</string>
+    <string name="profile_name">Sujan Maharjan</string>
+    <string name="post_profile_name">Jenish Upreti</string>
+    <string name="post_content">What a scenario!!!</string>
+
+    <string-array name="emotions">
+        <item>excited</item>
+        <item>happy</item>
+        <item>sad</item>
+        <item>irritated</item>
+    </string-array>
+</resources>
