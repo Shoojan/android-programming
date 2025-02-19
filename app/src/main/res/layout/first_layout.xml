@@ -118,5 +118,58 @@
     </RelativeLayout>
 
     <!-- Post Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_margin"
+        >
+
+        <ImageView
+            android:id="@+id/postProfileImageView"
+            android:layout_width="@dimen/post_profile_image_size"
+            android:layout_height="@dimen/post_profile_image_size"
+            android:src="@drawable/post_profile_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/postProfileImageNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_profile_name"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/postProfileImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/postProfileTimePeriodView"/>
+
+        <TextView
+            android:id="@+id/postProfileTimePeriodView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 min ago"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/postProfileImageView"
+            app:layout_constraintStart_toEndOf="@id/postProfileImageView"
+            app:layout_constraintTop_toBottomOf="@+id/postProfileImageNameView" />
+
+        <TextView
+            android:id="@+id/postContentView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_content"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postProfileImageView"/>
+
+        <ImageView
+            android:id="@+id/postImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="250sp"
+            android:src="@drawable/post_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postContentView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
