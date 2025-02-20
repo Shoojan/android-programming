@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_margin="@dimen/common_margin"
     tools:context=".LoginActivity">
 
     <TextView
+        android:id="@+id/loginTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Smile Book"
+        android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="40sp"
+        android:textSize="60sp"
         android:textStyle="bold"
         android:fontFamily="casual"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nameEditTextView" />
 
     <EditText
         android:id="@+id/nameEditTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="28sp"
         android:hint="Your name please"
-        />
+        android:layout_margin="@dimen/common_margin"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginTitleView" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Go to Home Page"
+        app:layout_constraintTop_toBottomOf="@id/nameEditTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
