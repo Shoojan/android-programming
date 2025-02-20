@@ -18,6 +18,8 @@
 .externalNativeBuild
 .cxx
 
+github_pat.txt
+
 # Local configuration files
 local.properties
 
