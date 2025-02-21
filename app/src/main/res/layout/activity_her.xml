@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/her"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/common_margin"
+    tools:context=".himher.HerActivity">
+
+    <TextView
+        android:id="@+id/herTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expecting a gift from him! 🥹"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/giftResponseEditText"/>
+
+    <EditText
+        android:id="@+id/giftResponseEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Did you like it?"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/herImageView"
+        app:layout_constraintTop_toBottomOf="@+id/herTitleView" />
+
+    <Button
+        android:id="@+id/sendGiftResponseBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Response"
+        app:layout_constraintBottom_toTopOf="@id/herImageView"
+        app:layout_constraintTop_toBottomOf="@id/giftResponseEditText"
+        />
+
+    <ImageView
+        android:id="@+id/herImageView"
+        android:layout_width="match_parent"
+        android:layout_height="380sp"
+        android:src="@drawable/her"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

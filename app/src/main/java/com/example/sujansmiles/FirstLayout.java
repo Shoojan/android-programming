@@ -2,6 +2,8 @@ package com.example.sujansmiles;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.sujansmiles.himher.HimActivity;
 
 public class FirstLayout extends AppCompatActivity {
 
@@ -35,5 +39,20 @@ public class FirstLayout extends AppCompatActivity {
         String userName = intent.getStringExtra(Constant.USER_NAME);
 
         profileNameView.setText(userName);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ImageButton peopleButton = findViewById(R.id.peopleButton);
+
+        peopleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent peopleIntent = new Intent(FirstLayout.this, HimActivity.class);
+                startActivity(peopleIntent);
+            }
+        });
     }
 }
