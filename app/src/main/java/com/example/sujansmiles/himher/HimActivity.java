@@ -4,11 +4,17 @@ import android.app.ComponentCaller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +26,8 @@ import com.example.sujansmiles.Constant;
 import com.example.sujansmiles.R;
 
 public class HimActivity extends AppCompatActivity {
+
+    String selectedGift;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +45,54 @@ public class HimActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        EditText giftEditText = findViewById(R.id.giftEditText);
+//        EditText giftEditText = findViewById(R.id.giftEditText);
         Button sendGiftBtn = findViewById(R.id.sendGiftBtn);
+        Spinner giftSpinner = findViewById(R.id.giftSpinner);
+
+        String[] gifts = getResources().getStringArray(R.array.gifts);
+
+        giftSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedGift = gifts[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         sendGiftBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HimActivity.this, HerActivity.class);
 
-                String gift = giftEditText.getText().toString();
+//                String gift = giftEditText.getText().toString();
 
-                intent.putExtra(Constant.GIFT,gift);
+                intent.putExtra(Constant.GIFT,selectedGift);
 
-                startActivityForResult(intent, Constant.REQUEST_CODE);
+//                startActivityForResult(intent, Constant.REQUEST_CODE);
+
+                // Alternative approach for startActivityForResult
+                activityResultLauncher.launch(intent);
             }
         });
     }
+
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult activityResult) {
+                    if(activityResult.getResultCode() == RESULT_OK && activityResult.getData() != null){
+                        String response = activityResult.getData().getStringExtra(Constant.GIFT_RESPONSE);
+
+                        Toast.makeText(HimActivity.this, response, Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+    );
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -16,16 +16,26 @@
         android:textAlignment="center"
         android:textSize="40sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/giftEditText"/>
+        app:layout_constraintBottom_toTopOf="@id/giftSpinner"/>
 
-    <EditText
-        android:id="@+id/giftEditText"
+<!--    <EditText-->
+<!--        android:id="@+id/giftEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Think of any Gift!"-->
+<!--        android:textSize="30sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/himImageView"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/himTitleView" />-->
+
+    <Spinner
+        android:id="@+id/giftSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Think of any Gift!"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/himImageView"
-        app:layout_constraintTop_toBottomOf="@+id/himTitleView" />
+        app:layout_constraintTop_toBottomOf="@+id/himTitleView"
+        android:entries="@array/gifts"
+        />
 
     <Button
         android:id="@+id/sendGiftBtn"
@@ -33,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="Send Gift"
         app:layout_constraintBottom_toTopOf="@id/himImageView"
-        app:layout_constraintTop_toBottomOf="@id/giftEditText"
+        app:layout_constraintTop_toBottomOf="@id/giftSpinner"
         />
 
     <ImageView

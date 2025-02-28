@@ -10,4 +10,11 @@
         <item>sad</item>
         <item>irritated</item>
     </string-array>
+
+    <string-array name="gifts">
+        <item>Perfume</item>
+        <item>Diamond Ring</item>
+        <item>Flower</item>
+        <item>Teddy bear</item>
+    </string-array>
 </resources>
