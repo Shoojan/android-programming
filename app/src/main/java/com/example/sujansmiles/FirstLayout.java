@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.sujansmiles.fragments.FragmentDemoActivity;
 import com.example.sujansmiles.himher.HimActivity;
 
 public class FirstLayout extends AppCompatActivity {
@@ -51,6 +52,14 @@ public class FirstLayout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent peopleIntent = new Intent(FirstLayout.this, HimActivity.class);
+                startActivity(peopleIntent);
+            }
+        });
+
+        findViewById(R.id.messageButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent peopleIntent = new Intent(FirstLayout.this, FragmentDemoActivity.class);
                 startActivity(peopleIntent);
             }
         });
