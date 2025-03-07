@@ -31,6 +31,8 @@ public class MenuActivity extends AppCompatActivity {
             return insets;
         });
 
+        TextView contextTextView = findViewById(R.id.contextTextView);
+        registerForContextMenu(contextTextView);
     }
 
     @Override
@@ -65,5 +67,15 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.context_menu, menu);
+    }
 
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        return super.onContextItemSelected(item);
+    }
 }
