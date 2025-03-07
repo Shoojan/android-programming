@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".menus.MenuActivity">
+
+    <TextView
+        android:id="@+id/contextTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Long press for Context Menu"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/popupMenuButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/popupMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Popup Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contextTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
