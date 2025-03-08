@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,39 @@ public class MenuActivity extends AppCompatActivity {
 
         TextView contextTextView = findViewById(R.id.contextTextView);
         registerForContextMenu(contextTextView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Button popupMenuButton = findViewById(R.id.popupMenuButton);
+        popupMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupMenu(v);
+            }
+        });
+    }
+
+    private void popupMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.context_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.shareMenuItem) {
+//                    Do something
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        popupMenu.show();
     }
 
     @Override
