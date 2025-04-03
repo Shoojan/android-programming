@@ -68,6 +68,7 @@ public class FirstLayout extends AppCompatActivity {
         findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent peopleIntent = new Intent(FirstLayout.this, MenuActivity.class);
                 startActivity(peopleIntent);
             }
