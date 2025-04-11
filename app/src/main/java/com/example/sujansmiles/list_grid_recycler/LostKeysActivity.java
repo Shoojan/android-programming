@@ -37,33 +37,20 @@ public class LostKeysActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        listViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new ListViewFragment());
-            }
-        });
-
-        gridViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new GridViewFragment());
-            }
-        });
-
-        recyclerViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new RecyclerViewFragment());
-            }
-        });
-        
+        this.registerFragmentOnButtonClick(listViewButton, new ListViewFragment());
+        this.registerFragmentOnButtonClick(gridViewButton, new GridViewFragment());
+        this.registerFragmentOnButtonClick(recyclerViewButton, new RecyclerViewFragment());
     }
 
-    private void loadFragment(Fragment fragment){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentContainerView, fragment)
-                .commit();
+    private void registerFragmentOnButtonClick(View view, Fragment fragment) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainerView, fragment)
+                        .commit();
+            }
+        });
     }
 }

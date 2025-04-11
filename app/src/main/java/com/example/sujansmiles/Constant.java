@@ -9,4 +9,6 @@ public class Constant {
 
     public static final int REQUEST_CODE = 2;
 
+    public static String[] LOST_ITEMS = {"Key", "Bottle", "Pen", "Mobile", "Goggles"};
+
 }
