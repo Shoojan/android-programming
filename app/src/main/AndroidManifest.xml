@@ -10,10 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyFirstApp"
+        android:theme="@style/Theme.MyFirstAppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".list_grid_recycler.LostKeysActivity"
+            android:name=".subjects.SubjectActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,35 +21,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".dialogs.DialogActivity"
-            android:exported="true">
+<!--        <activity-->
+<!--            android:name=".list_grid_recycler.LostKeysActivity"-->
+<!--            android:exported="true">-->
+<!--&lt;!&ndash;            <intent-filter>&ndash;&gt;-->
+<!--&lt;!&ndash;                <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+<!--&lt;!&ndash;                <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </intent-filter>&ndash;&gt;-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".dialogs.DialogActivity"-->
+<!--            android:exported="true">-->
+
+<!--            &lt;!&ndash; <intent-filter> &ndash;&gt;-->
+<!--            &lt;!&ndash; <action android:name="android.intent.action.MAIN" /> &ndash;&gt;-->
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
-            android:name=".menus.MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".fragments.FragmentDemoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".himher.HerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".himher.HimActivity"
-            android:exported="true" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".FirstLayout"
-            android:exported="true" />
+<!--            &lt;!&ndash; <category android:name="android.intent.category.LAUNCHER" /> &ndash;&gt;-->
+<!--            &lt;!&ndash; </intent-filter> &ndash;&gt;-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".menus.MenuActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".fragments.FragmentDemoActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".himher.HerActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".himher.HimActivity"-->
+<!--            android:exported="true" />-->
+<!--        <activity-->
+<!--            android:name=".LoginActivity"-->
+<!--            android:exported="true" />-->
+<!--        <activity-->
+<!--            android:name=".FirstLayout"-->
+<!--            android:exported="true" />-->
     </application>
 
 </manifest>
