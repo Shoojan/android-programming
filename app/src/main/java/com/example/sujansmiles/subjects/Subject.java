@@ -1,11 +1,14 @@
 package com.example.sujansmiles.subjects;
 
+import android.graphics.Color;
+
 public class Subject {
     private int id;
     private String name;
     private int color;
 
     public Subject() {
+        this.color = Color.GRAY;
     }
 
     public Subject(String name, int color) {

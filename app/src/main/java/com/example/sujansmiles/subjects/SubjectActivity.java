@@ -65,24 +65,7 @@ public class SubjectActivity extends AppCompatActivity {
 
         Subject subject = new Subject();
 
-        colorButton.setOnClickListener(v1 -> {
-            AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(
-                    SubjectActivity.this,
-                    Color.GRAY,
-                    new AmbilWarnaDialog.OnAmbilWarnaListener() {
-                        @Override
-                        public void onCancel(AmbilWarnaDialog dialog) {
-                        }
-
-                        @Override
-                        public void onOk(AmbilWarnaDialog dialog, int color) {
-                            subject.setColor(color);
-                            colorButton.setBackgroundColor(color);
-                        }
-                    }
-            );
-            colorPicker.show();
-        });
+        colorButton.setOnClickListener(v1 -> pickColor(subject, v1));
 
         builder.setPositiveButton("Save", (dialog, which) -> {
 
@@ -98,5 +81,24 @@ public class SubjectActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void pickColor(Subject subject, View colorButton) {
+        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(
+                SubjectActivity.this,
+                subject.getColor(),
+                new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                    @Override
+                    public void onCancel(AmbilWarnaDialog dialog) {
+                    }
+
+                    @Override
+                    public void onOk(AmbilWarnaDialog dialog, int color) {
+                        subject.setColor(color);
+                        colorButton.setBackgroundColor(color);
+                    }
+                }
+        );
+        colorPicker.show();
     }
 }
