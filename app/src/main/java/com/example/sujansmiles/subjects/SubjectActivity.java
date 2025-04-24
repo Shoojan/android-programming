@@ -28,6 +28,7 @@ public class SubjectActivity extends AppCompatActivity {
     ArrayList<Subject> list;
     ListView listView;
     SubjectAdapter subjectAdapter;
+    SqLiteHelper sqLiteHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,10 @@ public class SubjectActivity extends AppCompatActivity {
             return insets;
         });
 
-        list = new ArrayList<>();
+        sqLiteHelper = new SqLiteHelper(this);
+
+        //Fetch
+        list = sqLiteHelper.read();
 
         listView = findViewById(R.id.listView);
         subjectAdapter = new SubjectAdapter(this, list);
@@ -73,6 +77,9 @@ public class SubjectActivity extends AppCompatActivity {
 
         builder.setPositiveButton("Save", (dialog, which) -> {
             subject.setName(nameEditText.getText().toString());
+
+            sqLiteHelper.create(subject.getName(), subject.getColor());
+
             list.add(subject);
             subjectAdapter.notifyDataSetChanged();
         });
