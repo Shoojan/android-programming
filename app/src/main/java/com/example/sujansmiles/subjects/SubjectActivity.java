@@ -27,6 +27,7 @@ public class SubjectActivity extends AppCompatActivity {
 
     ArrayList<Subject> list;
     ListView listView;
+    SubjectAdapter subjectAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class SubjectActivity extends AppCompatActivity {
         list = new ArrayList<>();
 
         listView = findViewById(R.id.listView);
+        subjectAdapter = new SubjectAdapter(this, list);
+        listView.setAdapter(subjectAdapter);
+
         FloatingActionButton addButton = findViewById(R.id.addButton);
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -68,13 +72,9 @@ public class SubjectActivity extends AppCompatActivity {
         colorButton.setOnClickListener(v1 -> pickColor(subject, v1));
 
         builder.setPositiveButton("Save", (dialog, which) -> {
-
             subject.setName(nameEditText.getText().toString());
-
             list.add(subject);
-
-            SubjectAdapter subjectAdapter = new SubjectAdapter(this, list);
-            listView.setAdapter(subjectAdapter);
+            subjectAdapter.notifyDataSetChanged();
         });
 
         builder.setNegativeButton("Cancel", null);
