@@ -56,15 +56,17 @@ public class SqLiteHelper extends SQLiteOpenHelper {
      * U: Update
      * D: Delete
      */
-    public void create(String name, int color) {
+    public int create(String name, int color) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, name);
         contentValues.put(COLUMN_COLOR, color);
 
-        db.insert(TABLE_NAME, null, contentValues);
+        int id = (int) db.insert(TABLE_NAME, null, contentValues);
         db.close();
+
+        return id;
     }
 
     /**

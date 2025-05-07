@@ -2,14 +2,18 @@ package com.example.sujansmiles.subjects;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -50,18 +54,20 @@ public class SubjectActivity extends AppCompatActivity {
         subjectAdapter = new SubjectAdapter(this, list);
         listView.setAdapter(subjectAdapter);
 
+        registerForContextMenu(listView);
+
         FloatingActionButton addButton = findViewById(R.id.addButton);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //1. Show Custom Dialog
-                showCustomDialog();
+                showCustomDialog(new Subject());
             }
         });
     }
 
-    private void showCustomDialog() {
+    private void showCustomDialog(Subject subject) {
         AlertDialog.Builder builder = new AlertDialog.Builder(SubjectActivity.this);
 
         LayoutInflater inflater = getLayoutInflater();
@@ -71,16 +77,27 @@ public class SubjectActivity extends AppCompatActivity {
         EditText nameEditText = view.findViewById(R.id.nameEditText);
         Button colorButton = view.findViewById(R.id.colorButton);
 
-        Subject subject = new Subject();
+        //Determine if the action is for save or update
+        Boolean isUpdate = subject.getId() != 0;
+        if (isUpdate) {
+            nameEditText.setText(subject.getName());
+            colorButton.setBackgroundColor(subject.getColor());
+        }
 
         colorButton.setOnClickListener(v1 -> pickColor(subject, v1));
 
         builder.setPositiveButton("Save", (dialog, which) -> {
             subject.setName(nameEditText.getText().toString());
 
-            sqLiteHelper.create(subject.getName(), subject.getColor());
+            if (isUpdate) {
+                sqLiteHelper.update(subject.getId(), subject.getName(), subject.getColor());
 
-            list.add(subject);
+            } else {
+               int createdId = sqLiteHelper.create(subject.getName(), subject.getColor());
+               subject.setId(createdId);
+               list.add(subject);
+            }
+
             subjectAdapter.notifyDataSetChanged();
         });
 
@@ -107,5 +124,33 @@ public class SubjectActivity extends AppCompatActivity {
                 }
         );
         colorPicker.show();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_subject_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        if (info != null) {
+            Subject subject = list.get(info.position);
+
+            int itemId = item.getItemId();
+            if (itemId == R.id.editSubject) {
+                showCustomDialog(subject);
+                return true;
+            } else if (itemId == R.id.deleteSubject) {
+                sqLiteHelper.delete(subject.getId());
+                subjectAdapter.notifyDataSetChanged();
+                list.remove(subject);
+                return true;
+            }
+        }
+
+        return super.onContextItemSelected(item);
     }
 }
